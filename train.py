@@ -30,18 +30,20 @@ import torch
 from torch.utils.data import DataLoader, RandomSampler, DistributedSampler, SequentialSampler
 from tqdm import tqdm, trange
 
+# hugginface
 import transformers
 from transformers import (
     MODEL_FOR_QUESTION_ANSWERING_MAPPING,
     WEIGHTS_NAME,
-    AdamW,
+    AdamW, #optimizer
     AutoConfig,
     AutoModelForQuestionAnswering,
     AutoTokenizer,
     get_linear_schedule_with_warmup,
     squad_convert_examples_to_features,
 )
-from utils import (
+
+from transformers.data.metrics.squad_metrics  import ( #utils
     compute_predictions_logits,
     squad_evaluate,
 )

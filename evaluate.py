@@ -5,9 +5,10 @@ import numpy as np
 from sklearn import metrics
 
 IOU_THRESH = 0.5
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def get_questions_from_csv():
-    df = pd.read_csv("category_descriptions.csv")
+    df = pd.read_csv(os.path.join(ROOT, "category_descriptions.csv"))
     q_dict = {}
     for i in range(df.shape[0]):
         category = df.iloc[i, 0].split("Category: ")[1]
@@ -181,7 +182,7 @@ def get_aupr(precisions, recalls):
 
 def get_results(model_path, gt_dict, verbose=False):
     predictions_path = os.path.join(model_path, "nbest_predictions_.json")
-    name = model_path.split("/")[-1]
+    name = os.path.split(model_path)[-1]#model_path.split("/")[-1]
 
     pred_dict = load_json(predictions_path)
 
@@ -201,9 +202,9 @@ def get_results(model_path, gt_dict, verbose=False):
 
 
 if __name__ == "__main__":
-    test_json_path = "./data/test.json"
-    model_path = "./trained_models/roberta-base"
-    save_dir = "./results"
+    test_json_path = os.path.join(ROOT, "data\\test.json")
+    model_path = os.path.join(ROOT, "trained_models\\roberta-base")
+    save_dir = os.path.join(ROOT,"results")
     if not os.path.exists(save_dir): os.mkdir(save_dir)
 
     gt_dict = load_json(test_json_path)
