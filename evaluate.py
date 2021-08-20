@@ -178,7 +178,7 @@ def get_aupr(precisions, recalls):
         return 0
     return aupr
 
-
+# evaluate_model_predictions
 def get_results(model_path, gt_dict, verbose=False):
     predictions_path = os.path.join(model_path, "nbest_predictions_.json")
     name = model_path.split("/")[-1]
