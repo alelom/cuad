@@ -834,6 +834,7 @@ def main():
         # Good practice: save your training arguments together with the trained model
         torch.save(args, os.path.join(args.output_dir, "training_args.bin"))
 
+        ## HERE THEY RELOAD MODEL AND TOKENIZER THAT THEY JUST SAVED...
         # Load a trained model and vocabulary that you have fine-tuned
         model = AutoModelForQuestionAnswering.from_pretrained(args.output_dir)  # , force_download=True)
         #print("LOADED MODEL")
